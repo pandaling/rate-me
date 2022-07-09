@@ -4,14 +4,33 @@ import { Container, Row, Col } from 'react-bootstrap';
 import homecss from './Home.module.css';
 import { MyButton, MyPopover } from '../../UI';
 import { happinessLabel, happinessLevel } from '../../config/sample';
+import { faker } from '@faker-js/faker';
+import { HttpService } from '../../services/HttpService';
+import { IRate } from '../../interfaces/rate.interface';
 
 export const Home: React.FC = () => {
   let history = useHistory();
 
+  let httpService = new HttpService();
+
   const [happiness, setHappiness] = useState<string>('6');
   const onclickHappiness = (level: string) => setHappiness(level);
 
-  const onclickSubmit = () => history.push('/submit-rate');
+  const onclickSubmit = async () => {
+    const data: IRate = {
+      username: faker.name.findName(),
+      rating: happiness,
+    };
+
+    try {
+      await httpService.add('/rate/add', data);
+      history.push('/submit-rate');
+    }
+    catch (e) {
+      console.error(e);
+    }
+  };
+
   const onclickReport = () => history.push('/report');
 
   return (
@@ -21,13 +40,13 @@ export const Home: React.FC = () => {
         <Container className={homecss.container}>
           <Row className={homecss.row}>
             <Col>
-              {happinessLabel.map((label: string) => {
-                return <Col style={{ margin: '70px 0' }}>{label}</Col>;
+              {happinessLabel.map((label: string, idx: number) => {
+                return <Col key={label} style={{ margin: '70px 0' }}>{label}</Col>;
               })}
             </Col>
             <Col>
-              {happinessLevel.map(level => {
-                return <Col>
+              {happinessLevel.map((level, idx: number) => {
+                return <Col key={level.label}>
                   <MyPopover
                     label={level.label}
                     bgColor={level.color}

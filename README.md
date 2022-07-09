@@ -9,6 +9,8 @@ The following libraries and tools are used to build this application.
 ```
 Node
 Express
+Typescript
+MongoDB
 ```
 
 - front end
@@ -19,7 +21,7 @@ Typescript
 
 ## Preparing
 
-**NOTE**: Expected you `nodejs` has been installed in your computer.
+**NOTE**: Expected you `NodeJS` and `MongoDB` has been installed in your computer.
 
 Clone the project folder and the following steps are required to install dependencies for both client and server:
 
@@ -33,23 +35,22 @@ $ npm install
 2. Install the dependencies for the client.
 
 ```bash
-# navigate to the client folder and install the dependencies
-$ cd ./client
-$ npm install
+# at the same project directory, run the following command
+$ npm run client-install
 ```
+
+3. Set the mongodb path to your location.
+
 
 ## How to start
 
 Run the Application.
 
 ```bash
-# Go back to the previous directory by doing the following
-$ cd ..
-
 # Start the service (both backend and frontend) with the command below.
-$ npm run dev
+$ npm run watch
 
-# NOTE: the react app runs on port 3000 while the node server runs on port 5000
+# NOTE: The react app runs on port 3000 while the node server runs on port 5000
 ```
 
 Upon successful run the service, it will redirect you to http://localhost:3000/.
