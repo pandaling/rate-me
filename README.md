@@ -2,6 +2,14 @@
 
 This is a very very simple web app for rating. More to front end/UI task. Regarding the backend part, will be added in the future.
 
+---
+
+
+## Main workflow explanation
+1. Everytime user submit a rating, a data with random user will save to db.
+2. Generate report, the data populated in the graph are fake BUT the trend data (bottom part) is based on user interaction.
+---
+
 
 The following libraries and tools are used to build this application.
 
@@ -35,11 +43,12 @@ $ npm install
 2. Install the dependencies for the client.
 
 ```bash
-# at the same project directory, run the following command
-$ npm run client-install
+# navigate to the client folder and install the dependencies
+$ cd ./client
+$ npm install
 ```
 
-3. Set the mongodb path to your location.
+3. Set the mongodb path to your location in the file `config/.env.dev`.
 
 
 ## How to start
